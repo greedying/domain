@@ -4,13 +4,13 @@ class Domain
 {
 	public $prefix = '';
 	public $suffix = '';
-	static $pinyin = '';
+	static $pinyin = [];
 	public function __construct($domain_name) {
 		//暂时不考虑 net.cn后缀这种双后缀的情况
 		$pos = strripos($domain_name, '.');
 		$this->prefix = substr($domain_name, 0, $pos);
 		$this->suffix = substr($domain_name, $pos + 1);
-        if (self::$pinyin === '') {
+        if (self::$pinyin === array()) {
             self::$pinyin = require_once(__DIR__ . '/../config/pinyin_arr.php');
         }
 	}
