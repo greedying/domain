@@ -50,6 +50,15 @@ class Domain
 		return 5;//其他
 	}
 
+	public function getIsFourConsonant()
+	{
+		if (preg_match("/^[BCDFGHJKLMNPQRSTWXYZbcdfghjklmnpqrstwxyz]{4}$/", $this->prefix)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
 
 	/****
 	 * 长度

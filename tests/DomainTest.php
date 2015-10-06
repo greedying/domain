@@ -88,4 +88,21 @@ class DomainTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(8, $domain->getLength());
 	}
 
+	public function testGetIsFourConsonant()
+	{
+        $domain = new Domain('abcd.com');
+		$this->assertFalse($domain->getIsFourConsonant());
+
+        $domain = new Domain('BCDF.com');
+		$this->assertTrue($domain->getIsFourConsonant());
+
+        $domain = new Domain('bcdf.com');
+		$this->assertTrue($domain->getIsFourConsonant());
+
+        $domain = new Domain('BCDFG.com');
+		$this->assertFalse($domain->getIsFourConsonant());
+
+        $domain = new Domain('1234.com');
+		$this->assertFalse($domain->getIsFourConsonant());
+	}
 }
