@@ -38,4 +38,54 @@ class DomainTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $domain->yinjieNum());
     }
 
+	public function testGetType()
+	{
+		/** 
+		 * 1数字  2字母 3 杂 4 汉字
+		 */
+        $domain = new Domain('123.com');
+		$this->assertEquals(1, $domain->getType());
+
+        $domain = new Domain('abc.com');
+		$this->assertEquals(2, $domain->getType());
+        $domain = new Domain('Abc.com');
+		$this->assertEquals(2, $domain->getType());
+        $domain = new Domain('ABC.com');
+		$this->assertEquals(2, $domain->getType());
+
+        $domain = new Domain('abc123.com');
+		$this->assertEquals(3, $domain->getType());
+        $domain = new Domain('Abc123.com');
+		$this->assertEquals(3, $domain->getType());
+        $domain = new Domain('A123Bc.com');
+		$this->assertEquals(3, $domain->getType());
+        $domain = new Domain('A123Bc.com');
+		$this->assertEquals(3, $domain->getType());
+
+        $domain = new Domain('测试汉字.com');
+		$this->assertEquals(4, $domain->getType());
+
+        $domain = new Domain('测试汉字123.com');
+		$this->assertEquals(5, $domain->getType());
+	}
+
+	public function testGetLength()
+	{
+        $domain = new Domain('123.com');
+		$this->assertEquals(3, $domain->getLength());
+
+        $domain = new Domain('abc.com');
+		$this->assertEquals(3, $domain->getLength());
+
+
+        $domain = new Domain('ABC123.com');
+		$this->assertEquals(6, $domain->getLength());
+
+        $domain = new Domain('测试.com');
+		$this->assertEquals(2, $domain->getLength());
+
+        $domain = new Domain('测试abc123.com');
+		$this->assertEquals(8, $domain->getLength());
+	}
+
 }

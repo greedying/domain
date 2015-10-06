@@ -23,6 +23,42 @@ class Domain
 		return self::$pinyin;
 	}
 
+	/***
+	 * 类别
+	 * 1、纯数字 2、纯字母 3、杂米 4、中文
+	 **/
+	public function getType()
+	{
+		if (preg_match("/^\d+$/", $this->prefix)) {
+			return 1;
+		}
+		if (preg_match("/^[A-Za-z]+$/", $this->prefix)) {
+			return 2;
+		}
+
+		if (preg_match("/\d+/", $this->prefix) &&			//含数字
+			preg_match("/[A-Za-z]+/", $this->prefix) &&		//含字母
+			preg_match("/^[a-zA-Z\d]+$/", $this->prefix)
+		) {	//只含数字字母
+			return 3;
+		}
+
+		if (preg_match("/^[\x{4e00}-\x{9fa5}]+$/u", $this->prefix)) {
+			return 4;
+		}
+
+		return 5;//其他
+	}
+
+
+	/****
+	 * 长度
+	 ***/
+	public function getLength()
+	{
+		return mb_strlen($this->prefix);
+	}
+
 	/**
 	 * 获取域名的音节数
 	 * 实在不知道音节数英文怎么表述了，阿门
@@ -35,15 +71,10 @@ class Domain
 	public function getYinjieNum($str)
 	{
 		$pinyin = self::getPinyin();
-
-		if (isset($pinyin[$str])) {
-			return 1;
-		}
+		if (isset($pinyin[$str])) return 1;
 
 		$num = min(strlen($str), 7);
-		/**
-		 * 倒序的目的, cuan这样可以理解为双拼可以理解为单拼的，理解为单拼
-		 **/
+		//倒序的目的, cuan这样可以理解为双拼可以理解为单拼的，理解为单拼
 		for ($i = $num; $i > 0; $i--){
 			if (isset($pinyin[substr($str, 0, $i)]) && 
 				$n = $this->getYinjieNum(substr($str, $i))) {
