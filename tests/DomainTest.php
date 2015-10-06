@@ -17,25 +17,25 @@ class DomainTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('net.cn', $domain->suffix);
     }
 
-    public function testyinjieNum()
+    public function testSyllableNum()
     {
         $domain = new Domain('a.com');
-        $this->assertEquals(1, $domain->yinjieNum());
+        $this->assertEquals(1, $domain->syllableNum());
 
         $domain = new Domain('ha.com');
-        $this->assertEquals(1, $domain->yinjieNum());
+        $this->assertEquals(1, $domain->syllableNum());
 
         $domain = new Domain('haqian.com');
-        $this->assertEquals(2, $domain->yinjieNum());
+        $this->assertEquals(2, $domain->syllableNum());
 
         $domain = new Domain('dapenti.com');
-        $this->assertEquals(3, $domain->yinjieNum());
+        $this->assertEquals(3, $domain->syllableNum());
 
         $domain = new Domain('cuan.com');
-        $this->assertEquals(1, $domain->yinjieNum());
+        $this->assertEquals(1, $domain->syllableNum());
 
         $domain = new Domain('cuqian.com');
-        $this->assertEquals(2, $domain->yinjieNum());
+        $this->assertEquals(2, $domain->syllableNum());
     }
 
 	public function testGetType()

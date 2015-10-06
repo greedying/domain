@@ -72,12 +72,12 @@ class Domain
 	 * 获取域名的音节数
 	 * 实在不知道音节数英文怎么表述了，阿门
 	 **/
-	public function yinjieNum()
+	public function syllableNum()
 	{
-        return $this->getYinjieNum($this->prefix);
+        return $this->getSyllableNum($this->prefix);
 	}
 
-	public function getYinjieNum($str)
+	public function getSyllableNum($str)
 	{
 		$pinyin = self::getPinyin();
 		if (isset($pinyin[$str])) return 1;
@@ -86,7 +86,7 @@ class Domain
 		//倒序的目的, cuan这样可以理解为双拼可以理解为单拼的，理解为单拼
 		for ($i = $num; $i > 0; $i--){
 			if (isset($pinyin[substr($str, 0, $i)]) && 
-				$n = $this->getYinjieNum(substr($str, $i))) {
+				$n = $this->getSyllableNum(substr($str, $i))) {
 				return $n + 1;
 			}
 		}
