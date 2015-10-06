@@ -6,8 +6,10 @@ class Domain
 	public $suffix = '';
 	static $pinyin = [];
 	public function __construct($domain_name) {
+		$domain_name || exit('缺少域名参数');
+
 		//暂时不考虑 net.cn后缀这种双后缀的情况
-		$pos = strripos($domain_name, '.');
+		$pos = strpos($domain_name, '.');
 		$this->prefix = substr($domain_name, 0, $pos);
 		$this->suffix = substr($domain_name, $pos + 1);
 	}

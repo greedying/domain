@@ -11,6 +11,10 @@ class DomainTest extends PHPUnit_Framework_TestCase
         $domain = new Domain('test.com');
         $this->assertEquals('test', $domain->prefix);
         $this->assertEquals('com', $domain->suffix);
+
+        $domain = new Domain('test.net.cn');
+        $this->assertEquals('test', $domain->prefix);
+        $this->assertEquals('net.cn', $domain->suffix);
     }
 
     public function testyinjieNum()
