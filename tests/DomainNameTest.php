@@ -20,22 +20,22 @@ class DomainNameNameTest extends PHPUnit_Framework_TestCase
     public function testSyllableNum()
     {
         $domain = new DomainName('a.com');
-        $this->assertEquals(1, $domain->syllableNum());
+        $this->assertEquals(1, $domain->getSyllableNum());
 
         $domain = new DomainName('ha.com');
-        $this->assertEquals(1, $domain->syllableNum());
+        $this->assertEquals(1, $domain->getSyllableNum());
 
         $domain = new DomainName('haqian.com');
-        $this->assertEquals(2, $domain->syllableNum());
+        $this->assertEquals(2, $domain->getSyllableNum());
 
         $domain = new DomainName('dapenti.com');
-        $this->assertEquals(3, $domain->syllableNum());
+        $this->assertEquals(3, $domain->getSyllableNum());
 
         $domain = new DomainName('cuan.com');
-        $this->assertEquals(1, $domain->syllableNum());
+        $this->assertEquals(1, $domain->getSyllableNum());
 
         $domain = new DomainName('cuqian.com');
-        $this->assertEquals(2, $domain->syllableNum());
+        $this->assertEquals(2, $domain->getSyllableNum());
     }
 
 	public function testGetType()
