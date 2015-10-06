@@ -1,6 +1,6 @@
 <?php 
 namespace Greedying\Domain;
-class Domain 
+class DomainName
 {
 	public $prefix = '';
 	public $suffix = '';
